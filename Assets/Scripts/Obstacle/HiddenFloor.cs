@@ -20,7 +20,7 @@ public class HiddenFloor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(this.gameObject.name);
+        /*Debug.Log(this.gameObject.name);*/
     }
 
     // Update is called once per frame
@@ -31,14 +31,14 @@ public class HiddenFloor : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("coliision");
+        /*Debug.Log("coliision");*/
         ActivateGameobject(false);
         StartCoroutine(WaitForShowGameobject(5));
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("trigger");
+        /*Debug.Log("trigger");*/
         ActivateGameobject(false);
         StartCoroutine(WaitForShowGameobject(5));
     }
