@@ -33,6 +33,11 @@ public class GameManager : MonoBehaviour
         checkpoint = player.position;
     }
 
+    public void ChangeCutSceneStatus(bool b)
+    {
+        isCutSceneDone = b;
+    }
+
     void OnFailedSceneFinish(PlayableDirector aDirector)
     {
         SceneManager.LoadScene(0);
