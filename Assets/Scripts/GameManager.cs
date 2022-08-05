@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,7 +19,14 @@ public class GameManager : MonoBehaviour
     {
         timeline.Play();
         timeline.stopped += OnCutsceneFinish;
+        failedCutscene.stopped += OnFailedSceneFinish;
         textCounter.text = "Cutscene";
+        Cursor.visible = false;
+    }
+
+    void OnFailedSceneFinish(PlayableDirector aDirector)
+    {
+        SceneManager.LoadScene(0);
     }
 
     void OnCutsceneFinish(PlayableDirector aDirector)
@@ -38,7 +46,7 @@ public class GameManager : MonoBehaviour
             textCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
-        if(Mathf.FloorToInt(timerCounter % 60) == 10)
+        if(Mathf.FloorToInt(timerCounter % 60) == 120)
         {
             Debug.Log("mulaii");
             failedCutscene.Play();
