@@ -53,6 +53,14 @@ namespace Supercyan.AnimalPeopleSample
 
         private void OnCollisionEnter(Collision collision)
         {
+            Debug.Log(collision.gameObject.tag);
+
+            if(collision.gameObject.tag == "Spike")
+            {
+
+                m_rigidBody.AddForce(Random.Range(100f, 200f), Random.Range(200f, 400f), Random.Range(100f, 200f));
+            }
+
             ContactPoint[] contactPoints = collision.contacts;
             for (int i = 0; i < contactPoints.Length; i++)
             {
@@ -219,6 +227,11 @@ namespace Supercyan.AnimalPeopleSample
             {
                 m_animator.SetTrigger("Jump");
             }
+        }
+
+        void SetPosition(Vector3 p)
+        {
+            transform.position = p;
         }
     }
 }
