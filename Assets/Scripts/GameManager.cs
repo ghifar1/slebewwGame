@@ -11,8 +11,16 @@ public class GameManager : MonoBehaviour
     public Text textCounter;
     public PlayableDirector timeline;
     public PlayableDirector failedCutscene;
+
+    [Header("Player")]
+    public Transform player;
+
+    [Header("Cutscene")]
     public float timerCounter = 0;
     private bool isCutSceneDone = false;
+
+    [Header("Checkpoint")]
+    public Vector3 checkpoint = new Vector3(0f, 0f, 0f);
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +30,7 @@ public class GameManager : MonoBehaviour
         failedCutscene.stopped += OnFailedSceneFinish;
         textCounter.text = "Cutscene";
         Cursor.visible = false;
+        checkpoint = player.position;
     }
 
     void OnFailedSceneFinish(PlayableDirector aDirector)
@@ -33,6 +42,16 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Finish");
         isCutSceneDone = true;
+    }
+
+    public void SpawnToLastCheckPoint()
+    {
+        player.position = checkpoint;
+    }
+
+    public void SaveCheckPoint(Vector3 cp)
+    {
+        checkpoint = cp;
     }
 
     // Update is called once per frame
