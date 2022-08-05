@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
             textCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         }
 
-        if(Mathf.FloorToInt(timerCounter % 60) == 120)
+        if(Mathf.FloorToInt(timerCounter / 60) == 2)
         {
             Debug.Log("mulaii");
             failedCutscene.Play();
